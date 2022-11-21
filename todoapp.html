@@ -32,6 +32,7 @@
 			font-size:30px ;
 		}
 	</style>
+	<p id="demo"></p>
 	<script src="https://kit.fontawesome.com/86bb47d1a9.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -42,7 +43,9 @@
 	</ul>
 	<button class="btn" onclick="todo()">submit</button>
 	</div>
+
 	<script type="text/javascript">
+		
 		function todo(){
 			var Name=document.getElementById("name").value,todolist=[]
 			if(Name===""){
@@ -52,14 +55,20 @@
 				add(Name)
 			}
 			document.getElementById("name").value=""
+			
 		}
 		function add(newvalue){
+			const d=new Date();
 			let ul=document.querySelector("ul")
-			console.log(ul)
+			//console.log(ul)
 			let li=document.createElement("li");
 			li.innerHTML=`
-			<span class="listvalue">${newvalue}</span><i class="fa-sharp fa-solid fa-xmark"></i>
+			<span class="listvalue">${newvalue}${d.getHours()}:${d.getMinutes()}:${d.getMilliseconds()}
+			</span><i class="fa-sharp fa-solid fa-xmark"></i>
+			<button name="deleteButton" ><i class="fas fa-trash"></i></button>
+			<i class="fas fa-check-square"></i>
 			`
+			
 			li.classList.add("listtype")
 			ul.appendChild(li)
 		}
